@@ -24,5 +24,5 @@ combinations n xs = [ y:ys | y:xs' <- tails xs, ys <- combinations (n-1) xs']
 
 main :: IO ()
 main = do
-    let s = "2502500135"
+    let s = "2502501135"
     putStrLn $ show $ ipSpliter s
