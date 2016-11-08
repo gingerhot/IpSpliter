@@ -1,7 +1,7 @@
 --
 -- by idegorepl<at>gmail.com
--- run by "runghc ipSpliter.hs" in shell
--- before making sure you've installed a Haskell runtime like GHC
+-- run "runghc ipSpliter.hs" in shell
+-- after making sure you've installed a Haskell runtime like GHC
 --
 
 import Data.List (intercalate, tails)
