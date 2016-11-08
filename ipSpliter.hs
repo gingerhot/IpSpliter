@@ -7,7 +7,7 @@
 import Data.List (intercalate, tails)
 
 ipSpliter :: String -> [String]
-ipSpliter s = [ intercalate "," x | x <- allIps, validCheck x ]
+ipSpliter s = [ intercalate "." x | x <- allIps, validCheck x ]
     where validCheck = all (\x -> (read x :: Int) < 256 && checkHeadZero x)
           checkHeadZero x = if length x > 1 then head (map (:[]) x) /= "0" else True
           allSplitPos = combinations 3 [1..length s - 1]
