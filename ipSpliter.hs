@@ -9,9 +9,12 @@ import Data.List (intercalate, tails)
 ipSpliter :: String -> [String]
 ipSpliter s = [ intercalate "." x | x <- allIps, validCheck x ]
     where validCheck = all (\x -> (read x :: Int) < 256 && checkHeadZero x)
-          checkHeadZero x = if length x > 1 then head (map (:[]) x) /= "0" else True
           allSplitPos = combinations 3 [1..length s - 1]
           allIps = map (\x -> splitIp x s) allSplitPos
+
+checkHeadZero :: String -> Bool
+checkHeadZero x | length x > 1 = head (map (:[]) x) /= "0"
+                | otherwise    = True
 
 splitIp :: [Int] -> String -> [String]
 splitIp [] s = [s]
@@ -20,7 +23,7 @@ splitIp (x:xs) s = m : splitIp (map (subtract x) xs) n
 
 combinations :: Int -> [Int] -> [[Int]]
 combinations 0 _ = [[]]
-combinations n xs = [ y:ys | y:xs' <- tails xs, ys <- combinations (n-1) xs']
+combinations n xs = [ y:ys | y:xs' <- tails xs, ys <- combinations (n-1) xs' ]
 
 main :: IO ()
 main = do
